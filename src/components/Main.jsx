@@ -8,7 +8,6 @@ export const Main = () => {
 
   // Method to pick a random movie
   const movie = movies[Math.floor(Math.random() * movies.length)];
-  // console.log(movie);
 
   // UseEffect array is empty here so each refresh sets a new movie
   useEffect(() => {
@@ -32,10 +31,11 @@ export const Main = () => {
         <div className="absolute bg-gradient-to-r from-gray-950 w-full h-[550px] z-10"></div>
         <div className="absolute w-full h-[550px]">
           <Image
-            src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
-            alt={movie?.title}
+            src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+            alt={movie?.title ? movie?.title : 'Movie title undefined'}
             fill={true}
             className=" object-cover w-full h-full"
+            priority={true}
           />
         </div>
       </div>
