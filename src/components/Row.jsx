@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Movie } from './Movie';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 export const Row = ({ title, fetchURL }) => {
   const [movies, setMovies] = useState([]);
@@ -12,15 +13,36 @@ export const Row = ({ title, fetchURL }) => {
     });
   }, [fetchURL]);
 
+  const slider = typeof document !== 'undefined' && document.getElementById('slider');
+
+  const slideLeft = () => {
+    slider.scrollLeft = slider.scrollLeft - 500;
+  };
+
+  const slideRight = () => {
+    slider.scrollLeft = slider.scrollLeft + 500;
+  };
+
   return (
     <>
       <h2 className="md:text-xl p-4 font-bold text-white">{title}</h2>
-      <div className="relative flex items-center">
-        <div id={'slider'}>
+      <div className="group relative flex items-center">
+        <MdChevronLeft
+          onClick={slideLeft}
+          className="hover:opacity-100 group-hover:block absolute left-0 z-10 hidden bg-white rounded-full opacity-50 cursor-pointer"
+          size={40}
+        />
+        {/* nowrap so the x-scroll goes full width */}
+        <div id={'slider'} className="whitespace-nowrap scroll-smooth scrollbar-hide relative w-full h-full overflow-x-scroll">
           {movies?.map((movie, id) => (
             <Movie movie={movie} key={id} />
           ))}
         </div>
+        <MdChevronRight
+          onClick={slideRight}
+          className="hover:opacity-100 group-hover:block absolute right-0 z-10 hidden bg-white rounded-full opacity-50 cursor-pointer"
+          size={40}
+        />
       </div>
     </>
   );
