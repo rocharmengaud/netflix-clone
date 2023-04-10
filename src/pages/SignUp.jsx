@@ -17,7 +17,7 @@ export default function SignUp() {
     event.preventDefault();
     try {
       await signUp(email, password);
-      router.push('/');
+      router.push('/Homepage');
     } catch (error) {
       console.log(error);
     }

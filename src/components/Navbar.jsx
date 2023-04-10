@@ -8,10 +8,10 @@ export const Navbar = () => {
   const { user, logOut } = UserAuth();
   // console.log(user);
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     try {
-      await logOut();
-      router.push('/');
+      logOut();
+      router.push('/Homepage');
     } catch (error) {
       console.log(error);
     }

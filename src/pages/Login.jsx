@@ -19,7 +19,7 @@ export default function Login() {
     setError('');
     try {
       await logIn(email, password);
-      router.push('/');
+      router.push('/Homepage');
     } catch (error) {
       console.log(error);
       setError(error.message);
