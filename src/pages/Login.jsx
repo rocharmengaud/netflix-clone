@@ -1,8 +1,31 @@
 import { Navbar } from '@/components/Navbar';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { UserAuth } from '@/context/AuthContext';
+import { useState } from 'react';
 
 export default function Login() {
+  const router = useRouter();
+
+  const { user, logIn } = UserAuth();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError('');
+    try {
+      await logIn(email, password);
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -18,9 +41,22 @@ export default function Login() {
           <div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
             <div className="max-w-[320px] mx-auto py-16">
               <h1 className="text-3xl font-bold">Sign In</h1>
-              <form className="flex flex-col w-full py-4">
-                <input className="p-3 my-2 bg-gray-700 rounded" type="email" placeholder="Email" />
-                <input className="p-3 my-2 bg-gray-700 rounded" type="password" placeholder="Password" autoComplete="current-password" />
+              {error ? <p className="p-3 my-2 bg-red-500">{error}</p> : null}
+              <form className="flex flex-col w-full py-4" onSubmit={(event) => handleSubmit(event)}>
+                <input
+                  className="p-3 my-2 bg-gray-700 rounded"
+                  type="email"
+                  placeholder="Email"
+                  autoComplete="email"
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+                <input
+                  className="p-3 my-2 bg-gray-700 rounded"
+                  type="password"
+                  placeholder="Password"
+                  autoComplete="current-password"
+                  onChange={(event) => setPassword(event.target.value)}
+                />
                 <button className="py-3 my-6 font-bold bg-red-600 rounded">Sign In</button>
                 <div className="flex items-center justify-between text-sm text-gray-500">
                   <p>
