@@ -8,7 +8,7 @@ const ImageWithFallback = (props, movie) => {
   return (
     <Image
       {...rest}
-      src={imgSrc ? imgSrc : `https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg`}
+      src={imgSrc ? imgSrc : `http://via.placeholder.com/640x360`}
       alt={movie.title ? movie.title : 'Movie title undefined'}
       priority={true}
       onError={() => {
