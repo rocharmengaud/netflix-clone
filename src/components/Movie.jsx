@@ -10,8 +10,8 @@ export const Movie = ({ movie }) => {
       <ImageWithFallback
         src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
         alt={movie.title}
-        width={500}
-        height={500}
+        width={1000}
+        height={1000}
         className="block object-cover w-full h-auto"
       />
       <div className="hover:opacity-100 hover:bg-black/80 absolute top-0 left-0 w-full h-full text-white opacity-0">
