@@ -19,7 +19,7 @@ export function AuthContextProvider({ children }) {
     return signOut(auth);
   };
 
-  // is the user logged in?
+  // Checking if the user is logged in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);

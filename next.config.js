@@ -9,7 +9,7 @@ const nextConfig = {
     NEXT_APP_APP_ID: process.env.NEXT_APP_APP_ID,
   },
   images: {
-    domains: ['image.tmdb.org', 'via.placeholder.com'],
+    domains: ['image.tmdb.org', 'via.placeholder.com', 'assets.nflxext.com'],
   },
   reactStrictMode: true,
 };
