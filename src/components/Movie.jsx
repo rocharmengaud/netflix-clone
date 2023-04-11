@@ -1,9 +1,34 @@
 import { useState } from 'react';
 import ImageWithFallback from './ImageWithFallback';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { UserAuth } from '@/context/AuthContext';
+import { db } from '@/firebase';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
 export const Movie = ({ movie }) => {
+  const { user } = UserAuth();
+
   const [like, setLike] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  // Getting the specific user email that is logged in
+  const movieID = doc(db, 'users', `${user?.email}`);
+
+  const saveMovie = async () => {
+    if (user?.email) {
+      setLike(!like);
+      setSaved(true);
+      await updateDoc(movieID, {
+        likedMovies: arrayUnion({
+          id: movie.id,
+          title: movie.title,
+          img: movie.backdrop_path,
+        }),
+      });
+    } else {
+      alert('Please, log in to save a movie');
+    }
+  };
 
   return (
     <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2 overflow-hidden">
@@ -16,7 +41,9 @@ export const Movie = ({ movie }) => {
       />
       <div className="hover:opacity-100 hover:bg-black/80 absolute top-0 left-0 w-full h-full text-white opacity-0">
         <p className="md:text-sm flex items-center justify-center h-full text-xs font-bold text-center whitespace-normal">{movie?.title}</p>
-        <p>{like ? <FaHeart className="top-4 left-4 absolute text-gray-300" /> : <FaRegHeart className="top-4 left-4 absolute text-gray-300" />}</p>
+        <p onClick={() => saveMovie()}>
+          {like ? <FaHeart className="top-4 left-4 absolute text-gray-300" /> : <FaRegHeart className="top-4 left-4 absolute text-gray-300" />}
+        </p>
       </div>
     </div>
   );
