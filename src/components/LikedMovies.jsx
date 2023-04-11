@@ -57,6 +57,7 @@ export const LikedMovies = () => {
               <ImageWithFallback
                 src={`https://image.tmdb.org/t/p/w500${movie.img}`}
                 alt={movie.title}
+                key={movie.id}
                 width={1000}
                 height={1000}
                 className="block object-cover w-full h-auto"
