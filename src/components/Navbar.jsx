@@ -19,7 +19,7 @@ export const Navbar = () => {
 
   return (
     // Z-index for the navbar to stay on top. Absolute needs w-full to work.
-    <div className="flex items-center justify-between p-4 z-[100] absolute w-full">
+    <div className="flex items-center justify-center p-4 z-[100] absolute w-full flex-wrap gap-4 lg:justify-between md:justify-between sm:justify-between">
       <Link href="/">
         <h1 className="text-4xl font-bold text-red-600 cursor-pointer">NETFLOUIX</h1>
       </Link>

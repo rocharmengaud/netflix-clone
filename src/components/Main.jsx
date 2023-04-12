@@ -34,7 +34,7 @@ export const Main = () => {
             src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
             alt={movie?.title ? movie?.title : 'Movie title undefined'}
             fill={true}
-            className=" object-cover w-full h-full"
+            className="object-cover w-full h-full"
             priority={true}
           />
         </div>
