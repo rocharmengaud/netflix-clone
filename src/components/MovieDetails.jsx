@@ -15,9 +15,9 @@ export const MovieDetails = ({ movie }) => {
             className="object-contain w-full h-full"
             quality={100}
           />
-          <div className="max-h-fit flex flex-col gap-5 pr-12">
+          <div className="max-h-fit sm:text-start md:text-start lg:text-start flex flex-col gap-5 text-center">
             <h1 className="md:text-5xl text-3xl font-bold text-white">{movie.title}</h1>
-            <p className="w-full text-gray-200">{movie.overview}</p>
+            <p className="w-full pb-6 text-gray-200">{movie.overview}</p>
           </div>
         </div>
       </div>
