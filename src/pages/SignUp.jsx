@@ -29,7 +29,7 @@ export default function SignUp() {
       <div className="relative w-full h-screen">
         <Image
           src={`https://assets.nflxext.com/ffe/siteui/vlv3/f1c3c4eb-2fea-42c7-9ebd-1c093bd8a69d/c7946386-ac97-4628-86ee-45fc7287ea59/FR-fr-20230403-popsignuptwoweeks-perspective_alpha_website_large.jpg`}
-          alt="Netflix bg image"
+          alt="Netflouix bg image"
           priority={true}
           fill
           className="sm:block absolute hidden object-cover"
